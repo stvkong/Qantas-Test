@@ -1,0 +1,37 @@
+This is a simple Maven project which follows the requirement stated in the Developer 
+Challenge by QANTAS MONEY.
+
+This project is using the spring boot framework, it defined/implemented two microservices; one accepts the request in the root level, and another accepts request one level below the root.
+Both services are do the same business function, but in different level/path.
+
+It has following components:
+1. service point (or endpoint) in the class SampleController.java
+2. service SimpleService.java
+3. utility classes: HttpHelper.java and TmpDataStore.java
+4. Bean class Node.java which stores the node information.
+
+For testing purpose, it has two test classes: SampleControllerTest.java and SampleControllerIT.java. Both uses the
+the testing framework for spring-boot.
+
+This proejct could be imported to Eclipse dev environment.
+
+It is built on Java 8 (1.8.0_77) and Maven 3.3.9. You need to get the right verion to generate package and run
+the jar file.
+Please wolk to the folder which holds the pom.xml to create the runnable package (or jar), and run the app.
+
+To create the deploying package (or jar file) please run the command: 
+mvn clean package
+
+To run the app, please run the command:
+java -jar target/spring-boot-microservice-sample-0.1.0.jar
+
+After you run the app, you can verify it by openning a browser, and put the url:
+http://localhost:8080, then it will get:
+{"url":"http://localhost/","title":"root","nodes":[{"url":"http://localhost/level1",
+"title":"Level 1 Page","nodes":[{"url":"http://some-site.com/","title":"Some Site 1",
+"nodes":[]}]},{"url":"http://goole.com/page1","title":"Google page 1","nodes":[]}]}
+
+If you put the url: http://localhost:8080/level1, it will return:
+{"url":"http://localhost/level1","title":"Level 1 Page","nodes":[{"url":"http://some-site.com/","title":"Some Site 1","nodes":[]}]}
+
+
